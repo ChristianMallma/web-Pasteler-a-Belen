@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/fonts.css' %}">
+
+<section class="background-gray">
+    <div class="container--1000">
+        <article class="site__content row column">
+            <p class="site__content__title">Estas son todas nuestras presentaciones</p>
+            <ul class="site__content__nominateds rower wrap between">
+                {% for design in designs %}
+                <li class="site__content__nominated">
+                        <figure class="site__content__nominated--figure">
+                            <img src="{{ design.image.url }}" alt="">
+                        </figure>
+                        <div class="row column">
+                            <div class="site__content__nominated-head">
+                                <h4 class="site__content__nominated--title">{{ design.name }}</h4>
+                            </div>
+                            <div class="site__content__nominated-footer rower middle between">
+                                <p>{{ design.description }}</p>
+                            </div>
+                            <div>
+                                <p>Precio Unitario: S/. {{ design.price }}</p>
+                            </div>
+                            <div>
+                                <a class="site__content__nominated--button" href="#">comprar</a>
+                            </div>     
+                        </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </article>
+    </div>
+</section>
+{% endblock content %}

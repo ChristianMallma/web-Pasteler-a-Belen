@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'core/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/fonts.css' %}">
+
+<header class="head">
+		<div class="background-white">
+			<div class="container">
+				<div class="head__one  row between middle">
+					<ul class="row middle">
+						<li class="head__one__item ">
+							<a class="head__one__item-a head__one__item-a--bold" href="{% url 'register' %}">Registrar</a>
+							<a class="head__one__item-a head__one__item-a--bold" href="{% url 'login' %}">Iniciar sesión</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+	</header>
+	<section class="background-gray">
+		<div class="container--600">
+			<div class="site__register row column">
+				<h1>Registro</h1>
+				<p><i>Create una cuenta con tu Email y Nombre de Usuario</i></p>
+				<form class="site__form background-white" method="POST">
+					{% csrf_token %}
+					<div class="site__form__input">
+						{{ form.username }}
+						{{ form.username.errors }}
+						{{ form.email }}
+						{{ form.email.errors }}
+						{{ form.password }}
+						{{ form.password.errors }}
+						<input type="submit" value="Enviar">
+					</div>
+				</form>
+				<p class="site__register__link">¿Ya eres miembro? <a href="{% url 'login' %}">Ingresar ahora</a></p>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
+	
